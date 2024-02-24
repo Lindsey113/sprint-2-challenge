@@ -6,22 +6,94 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
+      
+      
+        /*  if (!reason){
+        return "confirm status manually"
+      }
+      
+      if (!profile){
+        return {active: true}
+      } 
+      if (profile){
+        return {active: false, reason: "because"}
+      }
+     */
+     
 
+     if (profile.active === true && reason){
+      profile.active = false
+      profile.reason = reason
+      return profile
+     }
+
+     if(profile.active === false){
+      profile.active = true
+      delete profile.reason
+      return profile
+     }
+     if(profile.active === true && !reason){
+      return "confirm status manually"
+
+     }
+  
     }
+    
 
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
-
+      const row = y-1
+      const col = x-1
+      
+        
+        if (col < 0 || col > 2 || row < 0 || row > 2){
+        return "invalid coordinates"
+      }
+      
+      if (grid[row][col] === "🟥"){
+        return "🟥 💀"
+    } else if(grid[row][col] === "🟦"){
+      return "🟦 🥳"
     }
-
+   
+  }
+  
     // 👉 CHALLENGE 3
     function booleanize(obj) {
-
+        
+      for (let i in obj){
+         
+        if (obj[i] === 0){
+          obj[i] = false 
+         } else if (obj[i] === 1){
+          obj[i] = true
+         } else if (obj[i] === null){
+          delete obj[i]
+         } 
+         let key = i
+         let chars = key.split('')
+         if (chars.length > 9){
+          return "shorten all prop names to 9 chars or less"
+         }
     }
-
+    return obj
+  }
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
-
+      const words = text.split(" ");
+    //  let forbid = forbidden.split(" ");
+      
+      
+      for (let i in words){
+       if (forbidden.includes(words[i])){
+        words[i] = "x".repeat(words[i].length)
+       }
+      }
+      return words.join(" ")
+      if (text === ""){
+        return ""
+      } 
+      
     }
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
